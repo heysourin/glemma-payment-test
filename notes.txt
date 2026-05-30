@@ -1,0 +1,51 @@
+Implementing feature gating based on your subscription tiers (Free, Glow, Glow Pro) involves a few key steps. Since you aren't currently storing subscription data, **yes, you absolutely need to create storage for it** in your database to efficiently check a user's tier.
+
+Here is a structured plan to implement this:
+
+### Phase 1: Database & Data Model
+You need to extend your `user` model (or create a new table) to track their current subscription status.  // ADD THESE TWO FIELDS:
+  subscriptionTier: text("subscription_tier").default("free").notNull(),
+  subscriptionStatus: text("subscription_status").default("inactive").notNull(),
+
+
+1.  **Schema Update:** Add `subscriptionTier` (e.g., 'free', 'glow', 'glow_pro') and `subscriptionStatus` (e.g., 'active', 'canceled') fields to your `user` table in `lib/schemas/auth-schema.ts`.
+2.  **Database Migration:** Run a Drizzle migration to apply this change to your database.
+
+### Phase 2: Webhooks (Synchronization)
+You must keep your database in sync with the actual subscription status from Polar.
+1.  **Webhook Endpoint:** Create a server-side route (e.g., `/api/webhooks/polar`) that listens for events from Polar (e.g., `subscription.created`, `subscription.updated`, `subscription.canceled`).
+2.  **Handle Events:** When a webhook arrives, verify the signature, and update the user's subscription fields in your database accordingly.
+
+### Phase 3: Access Control Layer
+This is how you enforce the restrictions you mentioned.
+1.  **Server-Side Guards:** Create helper functions or middleware that check the user's `subscriptionTier` before executing sensitive logic, fetching data, or rendering pages.
+2.  **API Route Middleware:** Similar to server-side guards, wrap your API routes to reject requests from users who don't have the required tier.
+3.  **UI/Frontend Components:** Create a "wrapper" component (e.g., `<RequireTier tier="glow">...</RequireTier>`) that you can use in your React components to conditionally render UI elements based on the user's tier.
+
+### Phase 4: Implementation Workflow
+1.  **Get User in Session:** Since you're already using `better-auth`, ensure you can reliably access the user's current `subscriptionTier` from the session.
+2.  **Implementation:** Build the pieces one by one (Database -> Webhook -> Guards -> UI Wrappers).
+
+---
+
+Does this high-level plan make sense? If you're ready, I can help you with:
+*   Drafting the database schema changes.
+*   Writing the boilerplate for the webhook endpoint.
+*   Designing the server-side guard and UI wrapper components.
+
+Which part would you like to focus on first?
+
+
+---
+DB generate and push from auth-schema.ts update:
+- npx drizzle-kit generate
+- npx drizzle-kit push
+
+
+---------------------------------------------------------
+1/ lib/get-tier.ts — Resolves a user's tier by querying their Polar subscriptions
+2/ lib/schemas/analysis-schema.ts + lib/check-usage.ts — Tracks how many analyses a user has done (1/month free, 3/week glow, unlimited glow-pro)
+3/ Gemini files (gemini-free.ts, gemini-glow.ts, gemini-glow-pro.ts) — Each has a different prompt depth
+4/ app/api/analyse/route.ts — Now auth-protected, checks tier, checks usage limits, calls the right Gemini file
+5/ app/analyse/upload/page.tsx — Auth gate on the "Start Analysis" button — redirects to sign-in if not logged in, redirects to /pricing if they've hit their limit
+6/ lib/hooks/use-subscription.ts — Client-side hook to show/hide UI sections based on tier

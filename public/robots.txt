@@ -1,0 +1,162 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: LinkedInBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+User-agent: YandexBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+# Block SEO scrapers — no value to you
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Default for everything else
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/data/
+Disallow: /analyse/upload
+Disallow: /analyse/results
+
+Sitemap: https://theglemma.com/sitemap.xml
